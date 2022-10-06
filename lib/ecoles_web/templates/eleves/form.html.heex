@@ -1,0 +1,46 @@
+<.form let={f} for={@changeset} action={@action}>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+  
+    <%= label f, :nom %>
+    <%= text_input f, :nom %>
+    <%= error_tag f, :nom %>
+    
+    <%= label f, :prenom %>
+    <%= text_input f, :prenom %>
+    <%= error_tag f, :prenom %>
+
+    <%= label f, :age %>
+    <%= number_input f, :age %>
+    <%= error_tag f, :age %>
+    
+    <%= select f, :sexe_id, value: @conn.assigns.sexe.nom, class: "form-control" %>
+    <%= error_tag f, :sexes_id %>
+
+    <label for="pet-select">Sexe</label>
+    <select name="sexes_id" id="pet-select">
+        <option value="">Choisir le sexe</option>
+        <%= for sexes <- @sexe do %>
+          <option value={sexes.id} style="background: #1F2937; color: #fff;">
+        <%= sexes.nom %>
+        </option>
+      <% end %>
+    </select>
+
+   <label for="pet-select">Classe</label>
+    <select name="classe_id" id="pet-select">
+        <option value="">Choisir la classe</option>
+        <%= for classes <- @classe do %>
+         <option value={classes.id} style="background: #1F2937; color: #fff;">
+        <%= classes.nomclasse %>
+        </option>
+      <% end %>
+    </select>
+    <div>
+      <%= submit "Enregistrer" %>
+    </div>
+  </.form>
+  

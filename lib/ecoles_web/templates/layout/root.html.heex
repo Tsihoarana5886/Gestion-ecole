@@ -1,0 +1,146 @@
+<style>
+  body{
+    background-color: #67BE4B;
+  }
+  .header{
+        background-color:white;
+        height: 70px;
+        width: 100%;
+        padding: 1em;
+        text-align: center;
+    }
+    .content{
+       display: flex;
+       width: 100%;
+       margin-top: 5px;
+    }
+    .menu{
+        background-color:white;
+        width: 250px;
+        height: auto;
+        /* text-align: center; */
+    }
+    .contenu{
+        background-color:white;
+        width: 100%;
+        margin-left: 5px;
+        height: auto;
+    }
+    .footer{
+        background-color:white;
+        width: 100%;
+        margin-top: 5px;
+        color: black;
+        text-align: center;
+        left: 0;
+         bottom: 0;
+    }
+    .titre{
+       font-family: Georgia, 'Times New Roman', Times, serif;
+       font-size: xx-large;
+       font-weight: bold;
+    }
+    .titres{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: medium;
+        font-weight: bold;
+        text-align: center;
+    }
+    ul {
+         list-style-type: none;
+         margin-left: 20px;
+    }
+    ul li {
+    list-style: none;
+    }
+    .navbar {
+        height: 50px;
+        padding: 0;
+        margin-left: 30px;
+      }
+      .navbar li {
+        height: auto;
+        width: 135.8px;
+        float: left;
+        text-align: center;
+        list-style: none;
+        font: normal bold 13px/1em Arial, Verdana, Helvetica;
+        padding: 0;
+        margin: 0;
+        /* background-color: #444444; */
+      }
+      .navbar a {
+        padding: 18px 0;
+        border-left: 1px solid #ccc9c9;
+        text-decoration: none;
+        color: blue;
+        display: block;
+      }
+      .navbar li:hover,
+      a:hover {
+        background-color: white;
+      }
+      .navbar li ul {
+        display: none;
+        height: auto;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar li:hover ul {
+        display: block;
+      }
+      .navbar li ul li {
+        background-color: pink;
+      }
+      .navbar li ul li a {
+        border-left: 1px solid #444444;
+        border-right: 1px solid #444444;
+        border-top: 1px solid #c9d4d8;
+        border-bottom: 1px solid #444444;
+      }
+      .navbar li ul li a:hover {
+        background-color:cyan;
+      }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "Ecoles", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body>
+    <div class="header">
+      <h2 class="titre">GESTIONS ECOLES</h2>
+  </div>
+  <div class="content">
+      <div class="menu">
+          <h4 class="titres">Menu de navigation</h4>
+          <ul class="navbar">
+              <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Eleves</a></li>
+              <li><a href={Routes.classes_path(@conn, :index)}>Classes</a></li>
+              <li><a href="#">Statistiques</a></li>
+              <li><a href="#">Autre parametres</a>
+                <ul class="sub">
+                  <li><a href={Routes.sexe_path(@conn, :index)}>Sexe</a></li>
+                  <li><a href="buttons.html">Gestions notes</a></li>
+                </ul>
+              </li>
+              <li><a href={Routes.admin_path(@conn, :sign_out)}>Deconnexion</a></li>
+          </ul>
+      </div>
+      <div class="contenu">
+        <%= @inner_content %>
+      </div>
+      
+  </div>
+  <div class="footer">
+      <p class="titres">Copyright 2022</p>
+  </div>
+   
+  </body>
+</html>

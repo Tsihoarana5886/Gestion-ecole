@@ -1,0 +1,28 @@
+<h1>Liste Eleves</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Age</th>
+        <th>Sexe</th>
+        <th>Classe</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for eleve <- @eleves do %>
+      <tr>
+        <td><%= eleve.nom %></td>
+        <td><%= eleve.prenom %></td>
+        <td><%= eleve.age %> <span>ans</span></td>
+        <td><%= eleve.sexes_id %></td>
+        <td><%= eleve.classe_id %></td>
+        <td>
+          
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>

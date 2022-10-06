@@ -1,0 +1,29 @@
+<h1>Listes Classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom classe</th>
+      <th>Place</th>
+
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for classes <- @classe do %>
+    <tr>
+      <td><%= classes.nomclasse %></td>
+      <td><%= classes.place %> <span>plc</span></td>
+
+      <td>
+      
+        <span><%= link "Afficher", to: Routes.classes_path(@conn, :show, classes) %></span>
+        <span><%= link "Modifier", to: Routes.classes_path(@conn, :edit, classes) %></span>
+        <span><%= link "Supprimer", to: Routes.classes_path(@conn, :delete, classes), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "Ajouter un classe", to: Routes.classes_path(@conn, :new) %></span>

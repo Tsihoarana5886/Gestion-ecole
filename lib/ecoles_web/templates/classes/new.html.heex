@@ -1,0 +1,5 @@
+<h1>Nouveau classe</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.classes_path(@conn, :create)) %>
+
+<span><%= link "Retour", to: Routes.classes_path(@conn, :index) %></span>

@@ -1,0 +1,96 @@
+<style>
+    body{
+    background: #67BE4B;
+    }
+    #container{
+        width:400px;
+        margin:0 auto;
+        margin-top:10%;
+    }
+    /* Bordered form */
+    form {
+        width:100%;
+        padding: 30px;
+        border: 1px solid #f1f1f1;
+        background: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    #container h1{
+        width: 38%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+    /* Full-width inputs */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    input[type=submit] {
+        background-color: #53af57;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 50px;
+    }
+    input[type=submit]:hover {
+        background-color: white;
+        color: #53af57;
+        border: 1px solid #53af57;
+        
+    }
+    .inscrire{
+        margin-top: 5px;
+        float:right;
+        margin-bottom: 5px;
+        text-decoration: underline;
+    }
+</style>
+<html>
+    <head>
+       <meta charset="utf-8">
+        <!-- importer le fichier de style -->
+        <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
+    </head>
+    <body>
+        <div id="container">
+            <!-- zone de connexion -->
+            <%= form_for @changeset, @action, fn f -> %>
+                <%= if @changeset.action do %>
+                <div class="alert alert-danger">
+                    <p>Vérifiez vos informations ci-dessous</p>
+                </div>
+                <% end %>
+
+                <h1>Connexion</h1>
+                <label><b>Email</b></label>
+                <%= text_input f, :email, class: "un", id: "iu", align: "center", placeholder: "Identifiant/Adresse éléctronique" %>
+                <%= error_tag f, :email %>
+                <%= error_tag f, :req_uname_error %>
+                <%= error_tag f, :not_user %>
+
+                <label><b>Mot de passe</b></label>
+                <%= password_input f, :mdp, class: "pass", align: "center", placeholder: "Mot de passe" %>
+                <%= error_tag f, :mdp %>
+                <%= error_tag f, :req_pass_error %>
+                <%= error_tag f, :wrong_pass %>
+            
+                <%= submit "Se connecter", class: "submit", align: "center" %>
+                <div class="inscrire">
+                    <!--<p><a href={Routes.admin_path(@conn, :goTopageInscription)}>S'inscrire</a></p>-->
+                    <p><%= link "S'inscrire", to: Routes.admin_path(@conn, :goTopageInscription) %></p>
+                </div>
+            <% end %>
+           
+        </div>
+    </body>
+</html>

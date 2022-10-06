@@ -1,0 +1,18 @@
+<h1>Afficher Classe</h1>
+
+<ul>
+
+  <li>
+    <strong>Nom classe:</strong>
+    <%= @classes.nomclasse %>
+  </li>
+
+  <li>
+    <strong>Place:</strong>
+    <%= @classes.place %>
+  </li>
+
+</ul>
+
+<span><%= link "Modifier", to: Routes.classes_path(@conn, :edit, @classes) %></span> |
+<span><%= link "Retour", to: Routes.classes_path(@conn, :index) %></span>

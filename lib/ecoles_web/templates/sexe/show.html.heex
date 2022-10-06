@@ -1,0 +1,13 @@
+<h1>Afficher Sexe</h1>
+
+<ul>
+
+  <li>
+    <strong>Nom:</strong>
+    <%= @sexe.nom %>
+  </li>
+
+</ul>
+
+<span><%= link "Modifier", to: Routes.sexe_path(@conn, :edit, @sexe) %></span> |
+<span><%= link "Retour", to: Routes.sexe_path(@conn, :index) %></span>
