@@ -21,6 +21,7 @@ defmodule EcolesWeb.ElevesController do
         |> put_flash(:info, "Eleves created successfully.")
         #|> redirect(to: Routes.users_path(conn, :getAllUsers, users))
         |> redirect(to: Routes.eleves_path(conn, :getListEleves, eleves))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "inscription.html", changeset: changeset)
     end

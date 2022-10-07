@@ -121,7 +121,11 @@
       <div class="menu">
           <h4 class="titres">Menu de navigation</h4>
           <ul class="navbar">
-              <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Eleves</a></li>
+              <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Eleves</a>
+                <ul class="sub">
+                  <li><a href={Routes.eleves_path(@conn, :getListEleves)}>Voir listes</a></li>
+                </ul>
+              </li>
               <li><a href={Routes.classes_path(@conn, :index)}>Classes</a></li>
               <li><a href="#">Statistiques</a></li>
               <li><a href="#">Autre parametres</a>
