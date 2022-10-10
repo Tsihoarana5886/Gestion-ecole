@@ -5,6 +5,7 @@ defmodule EcolesWeb.ElevesController do
   alias Ecoles.Shema.Eleves
   alias Ecoles.Sexemod
   alias Ecoles.Shema
+  # alias Ecoles.Repo
 
 
   def gotoPageInsertEleves(conn, _params) do
@@ -29,7 +30,15 @@ defmodule EcolesWeb.ElevesController do
 
   def getListEleves(conn, _params) do
     eleves = Elevesmodeles.getListEleves()
-    render(conn, "liste_eleves.html", eleves: eleves)
+    sexe = Sexemod.list_sexes()
+    classe = Shema.list_classe()
+    render(conn, "liste_eleves.html", eleves: eleves, sexe: sexe, classe: classe)
+  end
+
+  def getFilter(conn, params) do
+    idSexe = get_in(params,["search", "sexes_id"])
+    eleves = Elevesmodeles.getfilter(idSexe)
+    render(conn, "repFiltre.html", eleves: eleves)
   end
 
 end

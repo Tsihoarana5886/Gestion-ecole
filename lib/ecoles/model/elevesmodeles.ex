@@ -23,8 +23,20 @@ defmodule Ecoles.Model.Elevesmodeles do
 
   def getListEleves do
     query = from e in Eleves,
-          join: c in Classes, on: c.id == e.classe_id,
-          select: e
+            join: s in Sexe,
+            on: s.id == e.sexes_id,
+            join: c in Classes,
+            on: c.id == e.classe_id,
+            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
+    Repo.all(query)
+  end
+
+  def getfilter(idSexe) do
+    query = from e in Eleves,
+            join: s in Sexe,
+            on: s.id == e.sexes_id,
+            where: e.sexes_id == ^idSexe,
+            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom}
     Repo.all(query)
   end
 

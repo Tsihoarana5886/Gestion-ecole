@@ -34,6 +34,7 @@ defmodule EcolesWeb.Router do
     get "/inscrire", ElevesController, :gotoPageInsertEleves
     post "/inscrireOk", ElevesController, :createELeves
     get "/eleves", ElevesController, :getListEleves
+    get "/filtre", ElevesController, :getFilter
 
   end
 

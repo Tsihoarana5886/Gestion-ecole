@@ -1,19 +1,4 @@
-<style>
-  .filter{
-    display: flex;
-    width: 100%;
-    height: 50px;
-    padding-top: 5px;
-  }
-</style>
-<h1>Liste Eleves</h1>
-<div class="filter">
-  <p>Filtre :</p>
-  <%= form_for @conn, Routes.eleves_path(@conn, :getFilter), [method: :get, as: :search], fn f -> %>
-  <%= select(f, :sexes_id, Enum.map(@sexe, &{&1.nom, &1.id}), prompt: "Par sexe") %>
-  <%= submit "Filtre" %>
-  <% end %>
-</div>
+<h1>Resultat Filtre</h1>
 <table>
     <thead>
       <tr>
@@ -33,7 +18,6 @@
           <td><%= eleves.prenom %></td>
           <td><%= eleves.age %>  <span>ans</span></td>
           <td><%= eleves.sexe %></td>
-          <td><%= eleves.classe %></td>
         </tr>
       <% end %>
     </tbody>
