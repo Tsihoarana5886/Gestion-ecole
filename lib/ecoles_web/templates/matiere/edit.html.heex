@@ -1,0 +1,5 @@
+<h1>Edit Matiere</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.matiere_path(@conn, :update, @matiere)) %>
+
+<span><%= link "Back", to: Routes.matiere_path(@conn, :index) %></span>

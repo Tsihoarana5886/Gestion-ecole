@@ -32,4 +32,19 @@ defmodule Ecoles.ShemaFixtures do
 
     classes
   end
+
+  @doc """
+  Generate a matiere.
+  """
+  def matiere_fixture(attrs \\ %{}) do
+    {:ok, matiere} =
+      attrs
+      |> Enum.into(%{
+        coef: 42,
+        nommatiere: "some nommatiere"
+      })
+      |> Ecoles.Shema.create_matiere()
+
+    matiere
+  end
 end

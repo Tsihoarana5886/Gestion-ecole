@@ -11,6 +11,7 @@
   <p>Filtre :</p>
   <%= form_for @conn, Routes.eleves_path(@conn, :getFilter), [method: :get, as: :search], fn f -> %>
   <%= select(f, :sexes_id, Enum.map(@sexe, &{&1.nom, &1.id}), prompt: "Par sexe") %>
+  <%= select(f, :classe_id, Enum.map(@classe, &{&1.nomclasse, &1.id}), prompt: "Par classe") %>
   <%= submit "Filtre" %>
   <% end %>
 </div>

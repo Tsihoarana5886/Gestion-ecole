@@ -1,0 +1,18 @@
+<h1>A propos matiere</h1>
+
+<ul>
+
+  <li>
+    <strong>Matiere:</strong>
+    <%= @matiere.nommatiere %>
+  </li>
+
+  <li>
+    <strong>Coefficient:</strong>
+    <%= @matiere.coef %>
+  </li>
+
+</ul>
+
+<span><%= link "Modifier", to: Routes.matiere_path(@conn, :edit, @matiere) %></span> |
+<span><%= link "Retour", to: Routes.matiere_path(@conn, :index) %></span>

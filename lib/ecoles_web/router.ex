@@ -36,6 +36,11 @@ defmodule EcolesWeb.Router do
     get "/eleves", ElevesController, :getListEleves
     get "/filtre", ElevesController, :getFilter
 
+    resources "/matieres", MatiereController
+
+    get "/saisir", NotesController, :gotoPageSaisieNotes
+    post "/notes", NotesController, :saisirNotes
+
   end
 
   # Other scopes may use custom stacks.

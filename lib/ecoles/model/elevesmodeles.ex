@@ -17,9 +17,9 @@ defmodule Ecoles.Model.Elevesmodeles do
     |> Repo.insert()
   end
 
-  # def getListEleves do
-  #   Repo.all(Eleves)
-  # end
+  def list_eleves do
+    Repo.all(Eleves)
+  end
 
   def getListEleves do
     query = from e in Eleves,
@@ -31,12 +31,14 @@ defmodule Ecoles.Model.Elevesmodeles do
     Repo.all(query)
   end
 
-  def getfilter(idSexe) do
+  def getfilter(idSexe, idClasse) do
     query = from e in Eleves,
             join: s in Sexe,
             on: s.id == e.sexes_id,
-            where: e.sexes_id == ^idSexe,
-            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom}
+            join: c in Classes,
+            on: c.id == e.classe_id,
+            where: e.sexes_id == ^idSexe and e.classe_id == ^idClasse,
+            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
     Repo.all(query)
   end
 

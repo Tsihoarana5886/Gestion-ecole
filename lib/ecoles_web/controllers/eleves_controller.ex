@@ -37,7 +37,8 @@ defmodule EcolesWeb.ElevesController do
 
   def getFilter(conn, params) do
     idSexe = get_in(params,["search", "sexes_id"])
-    eleves = Elevesmodeles.getfilter(idSexe)
+    idClasse = get_in(params,["search", "classe_id"])
+    eleves = Elevesmodeles.getfilter(idSexe, idClasse)
     render(conn, "repFiltre.html", eleves: eleves)
   end
 

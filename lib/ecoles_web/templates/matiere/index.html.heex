@@ -1,0 +1,30 @@
+<h1>Listing Matieres</h1>
+<div>
+  <span><%= link "Ajouter un matiere", to: Routes.matiere_path(@conn, :new) %></span>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Matiere</th>
+      <th>Coefficient</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for matiere <- @matieres do %>
+    <tr>
+      <td><%= matiere.nommatiere %></td>
+      <td><%= matiere.coef %></td>
+
+      <td>
+        <span><%= link "Voir", to: Routes.matiere_path(@conn, :show, matiere) %></span>
+        <span><%= link "Modifier", to: Routes.matiere_path(@conn, :edit, matiere) %></span>
+        <span><%= link "Supprimer", to: Routes.matiere_path(@conn, :delete, matiere), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+

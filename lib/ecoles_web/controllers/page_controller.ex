@@ -14,7 +14,7 @@ defmodule EcolesWeb.PageController do
     changeset = Adminmodeles.change_admin(%Admin{})
     # render conn, "login.html", changeset: changeset,
     # layoutlogin: {EcolesWeb.LayoutloginView, "layoutlogin.html"}
-    render(conn, "login.html", changeset: changeset)
+    render(conn, "login.html", changeset: changeset, layout: {EcolesWeb.PageView, "login.html"})
   end
 
   def goTopageLogin(conn, _params) do

@@ -121,9 +121,10 @@
       <div class="menu">
           <h4 class="titres">Menu de navigation</h4>
           <ul class="navbar">
-              <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Eleves</a>
+              <li><a href="#">Eleves</a>
                 <ul class="sub">
                   <li><a href={Routes.eleves_path(@conn, :getListEleves)}>Voir listes</a></li>
+                  <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Ajouter</a></li>
                 </ul>
               </li>
               <li><a href={Routes.classes_path(@conn, :index)}>Classes</a></li>
@@ -131,7 +132,8 @@
               <li><a href="#">Autre parametres</a>
                 <ul class="sub">
                   <li><a href={Routes.sexe_path(@conn, :index)}>Sexe</a></li>
-                  <li><a href="buttons.html">Gestions notes</a></li>
+                  <li><a href={Routes.matiere_path(@conn, :index)}>Gestions matieres</a></li>
+                  <li><a href={Routes.notes_path(@conn, :gotoPageSaisieNotes)}>Gestions notes</a></li>
                 </ul>
               </li>
               <li><a href={Routes.admin_path(@conn, :sign_out)}>Deconnexion</a></li>
