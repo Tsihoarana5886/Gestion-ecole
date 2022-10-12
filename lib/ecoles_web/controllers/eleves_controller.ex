@@ -19,9 +19,9 @@ defmodule EcolesWeb.ElevesController do
     case Elevesmodeles.create_eleves(eleves_params) do
       {:ok, eleves} ->
         conn
-        |> put_flash(:info, "Eleves created successfully.")
+        # |> put_flash(:info, "Eleves created successfully.")
         #|> redirect(to: Routes.users_path(conn, :getAllUsers, users))
-        |> redirect(to: Routes.eleves_path(conn, :getListEleves, eleves))
+        |> redirect(to: Routes.eleves_path(conn, :getElevesById, eleves))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "inscription.html", changeset: changeset)
@@ -40,6 +40,11 @@ defmodule EcolesWeb.ElevesController do
     idClasse = get_in(params,["search", "classe_id"])
     eleves = Elevesmodeles.getfilter(idSexe, idClasse)
     render(conn, "repFiltre.html", eleves: eleves)
+  end
+
+  def getElevesById(conn, %{"id" => id}) do
+    eleves = Elevesmodeles.get_eleves(id)
+    render(conn, "show.html", eleves: eleves)
   end
 
 end

@@ -1,18 +1,8 @@
-<h4>Saisir les notes</h4>
-<%= form_for @conn, Routes.notes_path(@conn, :saisirNotes), [method: :post], fn f -> %>
-
-    <%= label f, "Eleves" %>
-    <%= select f, :eleves_id, Enum.map(@eleves, &{&1.prenom, &1.id}), prompt: "Tous" %>
-   
-    <%= label f, "Matieres" %>
-    <%= select f, :matieres_id, Enum.map(@matieres, &{&1.nommatiere, &1.id}), prompt: "Tous" %>
-
-    <%= label f, "Notes" %>
-    <%= number_input f, :valeur_notes, style: "width: 120px" %>
-    <%= error_tag f, :valeur_notes %>
-
-    <div>
-      <%= submit "Valider" %>
-    </div>
- <% end %>
-  
+<h4 class="title">Saisir les notes</h4>
+<p>Choisir la classe :</p>
+<%= form_for @conn, Routes.notes_path(@conn, :get_list_eleves_classe), [method: :get, as: :search], fn f -> %>
+<%= select(f, :classe_id, Enum.map(@classe, &{&1.nomclasse, &1.id}), prompt: "Tous") %>
+<div>
+  <%= submit "Valider" %>
+</div>
+<% end %>

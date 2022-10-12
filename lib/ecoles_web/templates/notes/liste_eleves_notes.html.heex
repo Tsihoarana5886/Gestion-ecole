@@ -1,0 +1,54 @@
+<style>
+    .note{
+        display: block;
+        border: 1px solid brown;
+        padding-left: 30px;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+</style>
+<.form let={f} for={@changeset} action={@action}>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+    <div>
+        <%= select f, :matieres_id, Enum.map(@matieres, &{&1.nommatiere, &1.id}), prompt: "Choisir matieres" %>
+      
+    </div>
+    <div class="note">
+        <p>Tapez ici le mumero d'eleves :
+        <%= number_input f, :eleves_id, style: "width: 80px" %>
+        <%= error_tag f, :eleves_id %></p>
+        <p>Notes sur 20 :
+        <%= number_input f, :valeur_notes, style: "width: 80px" %>
+        <%= error_tag f, :valeur_notes %></p>
+        <div>
+            <%= submit "Valider"%>
+        </div>
+    </div>
+</.form>
+    <table>
+        <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Classe</th>
+            <th>Les notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= for eleves <- @eleves do %>
+            <tr>
+                <td><%= eleves.id %></td>
+                <td><%= eleves.nom %></td>
+                <td><%= eleves.prenom %></td>
+                <td><%= eleves.classe %></td>
+            </tr>
+        <% end %>
+      
+        </tbody>
+    </table>

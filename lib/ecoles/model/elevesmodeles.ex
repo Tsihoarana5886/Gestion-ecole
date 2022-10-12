@@ -42,4 +42,16 @@ defmodule Ecoles.Model.Elevesmodeles do
     Repo.all(query)
   end
 
+  # def get_eleves!(id), do: Repo.get!(Eleves, id)
+
+  def get_eleves(id) do
+    query = from e in Eleves,
+            join: s in Sexe,
+            on: s.id == e.sexes_id,
+            join: c in Classes,
+            on: c.id == e.classe_id,
+            where: e.id == ^id,
+            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
+    Repo.all(query)
+  end
 end

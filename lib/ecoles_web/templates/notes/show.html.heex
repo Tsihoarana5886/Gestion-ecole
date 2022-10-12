@@ -1,0 +1,24 @@
+<h4 class="title">Nouveau Notes</h4>
+<table>
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Matieres</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for note <- @notes do %>
+        <tr>
+          <td><%= note.ideleves %></td>
+          <td><%= note.nom %></td>
+          <td><%= note.prenom %></td>
+          <td><%= note.matiere %></td>
+          <td><%= note.notes %> <span>/20</span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <span><%= link "Retour", to: Routes.notes_path(@conn, :gotoPageSaisieNotes) %></span>

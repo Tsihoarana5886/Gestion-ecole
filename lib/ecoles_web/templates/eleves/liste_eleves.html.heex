@@ -6,7 +6,7 @@
     padding-top: 5px;
   }
 </style>
-<h1>Liste Eleves</h1>
+<h1 class="title">Liste Eleves</h1>
 <div class="filter">
   <p>Filtre :</p>
   <%= form_for @conn, Routes.eleves_path(@conn, :getFilter), [method: :get, as: :search], fn f -> %>
@@ -23,8 +23,6 @@
         <th>Age</th>
         <th>Sexe</th>
         <th>Classe</th>
-
-        <th></th>
       </tr>
     </thead>
     <tbody>

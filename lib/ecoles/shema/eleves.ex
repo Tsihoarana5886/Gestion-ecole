@@ -22,8 +22,7 @@ defmodule Ecoles.Shema.Eleves do
     |> cast(attrs, [:nom, :prenom, :age, :sexes_id, :classe_id])
     |> validate_required([:nom, :prenom, :age, :sexes_id, :classe_id])
     |> validate_inclusion(:age, 10..20)
-    |> unique_constraint(:sexes_id, message: "Error sur l'insertion sexe")
-    |> unique_constraint(:classe_id, message: "Error sur l'insertion classe")
+    # |> unique_constraint([:sexes_id, :classe_id])
   end
 
 end

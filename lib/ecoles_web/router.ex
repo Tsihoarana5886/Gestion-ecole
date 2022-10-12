@@ -33,6 +33,7 @@ defmodule EcolesWeb.Router do
 
     get "/inscrire", ElevesController, :gotoPageInsertEleves
     post "/inscrireOk", ElevesController, :createELeves
+    get "/dteleves/:id", ElevesController, :getElevesById
     get "/eleves", ElevesController, :getListEleves
     get "/filtre", ElevesController, :getFilter
 
@@ -40,6 +41,8 @@ defmodule EcolesWeb.Router do
 
     get "/saisir", NotesController, :gotoPageSaisieNotes
     post "/notes", NotesController, :saisirNotes
+    get "/saisire", NotesController, :get_list_eleves_classe
+    get "/dtnotes/:id", NotesController, :getNotesById
 
   end
 

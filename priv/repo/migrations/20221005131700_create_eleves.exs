@@ -11,6 +11,6 @@ defmodule Ecoles.Repo.Migrations.CreateEleves do
 
       timestamps()
     end
-    create unique_index(:eleves, [:sexes_id, :classe_id])
+    # create unique_index(:eleves, [:sexes_id, :classe_id])
   end
 end
