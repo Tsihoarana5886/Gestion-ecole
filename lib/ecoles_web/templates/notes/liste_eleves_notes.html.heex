@@ -7,6 +7,18 @@
         margin-bottom: 10px;
         border-radius: 20px;
     }
+    table
+    {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th /* Mettre une bordure sur les td ET les th */
+    {
+        border: 1px solid black;
+    }
+    .trbody{
+        display: flex;
+    }
 </style>
 <.form let={f} for={@changeset} action={@action}>
     <%= if @changeset.action do %>
@@ -16,7 +28,6 @@
     <% end %>
     <div>
         <%= select f, :matieres_id, Enum.map(@matieres, &{&1.nommatiere, &1.id}), prompt: "Choisir matieres" %>
-      
     </div>
     <div class="note">
         <p>Tapez ici le mumero d'eleves :
@@ -31,24 +42,34 @@
     </div>
 </.form>
     <table>
-        <thead>
-        <tr>
-            <th>Numero</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Classe</th>
-            <th>Les notes</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%= for eleves <- @eleves do %>
-            <tr>
-                <td><%= eleves.id %></td>
-                <td><%= eleves.nom %></td>
-                <td><%= eleves.prenom %></td>
-                <td><%= eleves.classe %></td>
-            </tr>
-        <% end %>
-      
-        </tbody>
-    </table>
+        <caption class="title">Notes des eleves</caption>
+            <div class="filter">
+                <p>Filtre :</p>
+                <%= form_for @conn, Routes.notes_path(@conn, :getfilterstudy), [method: :get, as: :filter], fn f -> %>
+                <%= select(f, :id, Enum.map(@eleves, &{&1.nom, &1.id}), prompt: "Par eleves") %>
+                <%= submit "Ok" %>
+                <% end %>
+            </div>
+            <%= for eleves <- @eleves do %>
+                <tr>
+                    <th style="text-align:center;">Eleves</th>
+                    <td colspan="10" style="text-align: center;color:goldenrod;font-family:Georgia, 'Times New Roman', Times, serif;font-size:x-large"><%= eleves.nom %>  <%= eleves.prenom %> <%= eleves.classe %>   Numero: <%= eleves.id %></td>
+                </tr>
+                <tr>
+                    <th style="text-align:center;">Notes sur (20)</th>
+                    <%= for note <- @notes do %>
+                        <%= if eleves.id == note.eleves_id do %>
+                            <%= for matiere <- @matieres do %>
+                                <%= if matiere.id == note.matieres_id do %>
+                                <tr>
+                                    <td style="color:darkcyan"><%= note.matiere %></td>
+                                    <td><%= note.valeur_notes %></td>
+                                </tr>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                   
+                </tr>
+            <% end %>
+     </table>

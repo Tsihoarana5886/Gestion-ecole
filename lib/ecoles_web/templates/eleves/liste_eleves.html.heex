@@ -23,17 +23,22 @@
         <th>Age</th>
         <th>Sexe</th>
         <th>Classe</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <%= for eleves <- @eleves do %>
-        <tr>
-          <td><%= eleves.nom %></td>
-          <td><%= eleves.prenom %></td>
-          <td><%= eleves.age %>  <span>ans</span></td>
-          <td><%= eleves.sexe %></td>
-          <td><%= eleves.classe %></td>
-        </tr>
+          <%= form_for @conn, Routes.notes_path(@conn, :show_notes_study), [method: :get, as: :show], fn f -> %>
+             <%= hidden_input f, :id, value: eleves.id %>
+            <tr>
+              <td><%= eleves.nom %></td>
+              <td><%= eleves.prenom %></td>
+              <td><%= eleves.age %>  <span>ans</span></td>
+              <td><%= eleves.sexe %></td>
+              <td><%= eleves.classe %></td>
+              <th><%= submit "Voir les notes" %></th>
+            </tr>
+          <% end %>
       <% end %>
     </tbody>
   </table>

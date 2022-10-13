@@ -43,6 +43,8 @@ defmodule EcolesWeb.Router do
     post "/notes", NotesController, :saisirNotes
     get "/saisire", NotesController, :get_list_eleves_classe
     get "/dtnotes/:id", NotesController, :getNotesById
+    get "/filterstudy", NotesController, :getfilterstudy
+    get "/bulletin", NotesController, :show_notes_study
 
   end
 

@@ -1,0 +1,100 @@
+<style>
+    .tete{
+        border:1px solid black;
+        margin: 10px 0 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .tete1{
+        /* background-color: blueviolet; */
+        height: auto;
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+    .tete2{
+        /* background-color: aqua; */
+        height: auto;
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+    .h1{
+        text-align: center;
+    }
+    .information{
+        margin: 10px 0 10px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .styled-table{
+        border: 1px solid black;
+    }
+    th, td{
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+<div class="tete">
+    <div class="tete1">
+        <p>Annee Scolaire : 2022 - 2023</p>
+        <p>Ecoles : CEG Mahitsy</p>
+    </div>
+    <div class="tete2">
+        <p>Lot : RN4 Mahitsy II S</p>
+        <p>Monsieur/Madame....</p>
+    </div>
+</div>
+<div class="bulletin">
+    <h1 class="h1">BULLETIN DE NOTES</h1>
+</div>
+<%= for studies <- @study do %>
+<div class="information">
+    <div class="tete1">
+        <p>Nom : <%= studies.nom %></p>
+        <p>Prenom : <%= studies.prenom %></p>
+        <p>Age : <%= studies.age %> ans</p>
+    </div>
+    <div class="tete2">
+        <p>Sexe : <%= studies.sexe %></p>
+        <p>Classe : <%= studies.classe %></p>
+        <p>Lot : Hopital Mahitsy 23 BP</p>
+    </div>
+</div>
+<% end %>
+<div class="tableaunotes">
+   
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Matieres</th>
+                <th colspan="2">Notes / sur</th>
+                <th>Remarques</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= for notes <- @eleves do %>
+            <tr>
+                <td><%= notes.matiere %></td>
+                <td><%= notes.note * notes.coefficient %></td>
+                <td><%= notes.coefficient * 20 %></td>
+            </tr>
+            <% end %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="font-size:x-large;">Total</td>
+                <td><%= Enum.sum([9, 9.0]) %></td>
+                <td>sur 300</td>
+            </tr>
+            <tr>
+                <td>Moyenne</td>
+                <td></td>
+                <td>15/20</td>
+            </tr>
+            <tr>
+                <td>Rang</td>
+                <td>4 em</td>
+            </tr>
+        </tfoot>
+    </table>
+   
+</div>

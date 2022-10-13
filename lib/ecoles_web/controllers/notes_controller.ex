@@ -18,7 +18,9 @@ defmodule EcolesWeb.NotesController do
     eleves = Notesmodeles.getElevesParClasse(idclasse)
     matieres = Shema.list_matieres()
     changeset = Notesmodeles.change_notes(%Notes{})
-    render(conn, "gotopagenotes.html",  changeset: changeset, eleves: eleves, matieres: matieres)
+    notes = Notesmodeles.get_all_notes()
+    study = Elevesmodeles.list_eleves()
+    render(conn, "gotopagenotes.html",  changeset: changeset, eleves: eleves, matieres: matieres, notes: notes, study: study)
   end
 
   def saisirNotes(conn, %{"notes" => notes_params}) do
@@ -38,4 +40,29 @@ defmodule EcolesWeb.NotesController do
     render(conn, "show.html", notes: notes)
   end
 
+  def getFilter(conn, params) do
+    idSexe = get_in(params,["search", "sexes_id"])
+    idClasse = get_in(params,["search", "classe_id"])
+    eleves = Elevesmodeles.getfilter(idSexe, idClasse)
+    render(conn, "repFiltre.html", eleves: eleves)
+  end
+
+  def getfilterstudy(conn, params) do
+    ideleves = get_in(params, ["filter", "id"])
+    eleves = Notesmodeles.get_eleves_id(ideleves)
+    matieres = Shema.list_matieres()
+    changeset = Notesmodeles.change_notes(%Notes{})
+    notes = Notesmodeles.get_all_notes()
+    study = Elevesmodeles.list_eleves()
+    render(conn, "gotopagenotes.html",  changeset: changeset, eleves: eleves, matieres: matieres, notes: notes, study: study)
+  end
+
+  def show_notes_study(conn, params) do
+    ideleves = get_in(params, ["show", "id"])
+    eleves = Notesmodeles.show_notes_study(ideleves)
+    study = Elevesmodeles.get_eleves(ideleves)
+    # sommenotes = Enum.sum([eleves.notes * eleves.coefficient])
+    render(conn, "bulletin.html", eleves: eleves, study: study)
+    # render(conn, "bulletin.html")
+  end
 end

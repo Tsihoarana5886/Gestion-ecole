@@ -27,7 +27,7 @@ defmodule Ecoles.Model.Elevesmodeles do
             on: s.id == e.sexes_id,
             join: c in Classes,
             on: c.id == e.classe_id,
-            select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
+            select: %{id: e.id, nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
     Repo.all(query)
   end
 
@@ -54,4 +54,5 @@ defmodule Ecoles.Model.Elevesmodeles do
             select: %{nom: e.nom, prenom: e.prenom, age: e.age, sexe: s.nom, classe: c.nomclasse}
     Repo.all(query)
   end
+
 end
