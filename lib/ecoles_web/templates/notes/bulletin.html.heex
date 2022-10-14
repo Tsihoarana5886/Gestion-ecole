@@ -80,19 +80,36 @@
             <% end %>
         </tbody>
         <tfoot>
-            <tr>
-                <td style="font-size:x-large;">Total</td>
-                <td><%= Enum.sum([9, 9.0]) %></td>
-                <td>sur 300</td>
+            <tr style="background-color:grey">
+                <td style="font-size:x-large">Total</td>
+                <%= for sum <- @sommenotes do %>
+                <td><%= sum.sommenotescoef %></td>
+                <% end %>
+                <%= for coef <- @sumcoef do %>
+                <td>sur <%= coef.sumcoef %></td>
+                <% end %>
             </tr>
             <tr>
                 <td>Moyenne</td>
                 <td></td>
-                <td>15/20</td>
+                <%= for m <- @moyenne do %>
+                <td style="background-color:grey;"><%= m.moyenne %></td>
+                <% end %>
             </tr>
             <tr>
                 <td>Rang</td>
-                <td>4 em</td>
+                <%= for r <- @rang do %>
+                    <%= for studies <- @study do %>
+                        <%= if r.nom == studies.nom do  %>
+                            <%= if r.rang == 1 do %>
+                                <td><%= r.rang %> ère</td>
+                            <% else %>
+                                <td><%= r.rang %> ème</td>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                <td></td>
             </tr>
         </tfoot>
     </table>

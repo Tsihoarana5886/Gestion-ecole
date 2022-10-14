@@ -72,4 +72,44 @@ defmodule Ecoles.Model.Notesmodeles do
     Repo.all(query)
   end
 
+  def sum_notes_to_coef(id) do
+    query = from n in Notes,
+            join: e in Eleves,
+            on: e.id == n.eleves_id,
+            join: m in Matiere,
+            on: m.id == n.matieres_id,
+            where: e.id == ^id,
+            select: %{sommenotescoef: sum(n.valeur_notes * m.coef)}
+    Repo.all(query)
+  end
+
+  def sum_coef do
+    query = from m in Matiere,
+            select: %{sumcoef: sum(m.coef * 20)}
+    Repo.all(query)
+  end
+
+  def calcul_moyenne(id) do
+    query = from n in Notes,
+            join: e in Eleves,
+            on: e.id == n.eleves_id,
+            join: m in Matiere,
+            on: m.id == n.matieres_id,
+            where: e.id == ^id,
+            select: %{moyenne: ((sum(n.valeur_notes * m.coef) / 19))}
+    Repo.all(query)
+  end
+
+  def rang_to_moyenne(idclasse) do
+    query = from n in Notes,
+            join: e in Eleves,
+            on: e.id == n.eleves_id,
+            join: m in Matiere,
+            on: m.id == n.matieres_id,
+            where: e.classe_id == ^idclasse,
+            group_by: e.nom,
+            select: %{rang: row_number() |> over(order_by: [desc: (sum(n.valeur_notes * m.coef)/ 19)]), nom: e.nom}
+    Repo.all(query)
+  end
+
 end

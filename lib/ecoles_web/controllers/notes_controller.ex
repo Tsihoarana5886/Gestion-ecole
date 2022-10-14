@@ -59,10 +59,15 @@ defmodule EcolesWeb.NotesController do
 
   def show_notes_study(conn, params) do
     ideleves = get_in(params, ["show", "id"])
+    idclasse = get_in(params, ["show", "idclasse"])
     eleves = Notesmodeles.show_notes_study(ideleves)
     study = Elevesmodeles.get_eleves(ideleves)
     # sommenotes = Enum.sum([eleves.notes * eleves.coefficient])
-    render(conn, "bulletin.html", eleves: eleves, study: study)
-    # render(conn, "bulletin.html")
+    sommenotes = Notesmodeles.sum_notes_to_coef(ideleves)
+    sumcoef = Notesmodeles.sum_coef()
+    moyenne = Notesmodeles.calcul_moyenne(ideleves)
+    rang = Notesmodeles.rang_to_moyenne(idclasse)
+    render(conn, "bulletin.html", eleves: eleves, study: study, sommenotes: sommenotes, sumcoef: sumcoef, moyenne: moyenne, rang: rang)
   end
+
 end

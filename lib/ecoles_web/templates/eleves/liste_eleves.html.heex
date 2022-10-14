@@ -30,6 +30,7 @@
       <%= for eleves <- @eleves do %>
           <%= form_for @conn, Routes.notes_path(@conn, :show_notes_study), [method: :get, as: :show], fn f -> %>
              <%= hidden_input f, :id, value: eleves.id %>
+             <%= hidden_input f, :idclasse, value: eleves.idclasse %>
             <tr>
               <td><%= eleves.nom %></td>
               <td><%= eleves.prenom %></td>
