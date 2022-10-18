@@ -6,7 +6,10 @@ defmodule EcolesWeb.AdminController do
 
   def goTopageInscription(conn, _params) do
     changeset = Adminmodeles.change_admin(%Admin{})
-    render(conn, "inscription.html", changeset: changeset)
+    conn
+    |> put_root_layout(false)
+    |> render("inscription.html", changeset: changeset)
+    # render(conn, "inscription.html", changeset: changeset)
   end
 
   def getAdmin(conn, _params) do
@@ -22,7 +25,10 @@ defmodule EcolesWeb.AdminController do
         |> redirect(to: Routes.page_path(conn, :goTopageLogin))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "inscription.html", changeset: changeset)
+        conn
+        |> put_root_layout(false)
+        |> render("inscription.html", changeset: changeset)
+        # render(conn, "inscription.html", changeset: changeset)
     end
   end
 
@@ -44,8 +50,8 @@ defmodule EcolesWeb.AdminController do
 
       {:error, _} ->
         conn
-        |>put_flash(:info, "Error d'identifiant")
-        |>redirect(to: Routes.page_path(conn, :goTopageLogin))
+        |> put_flash(:info, "Error d'identifiant")
+        |> redirect(to: Routes.page_path(conn, :goTopageLogin))
     end
   end
 

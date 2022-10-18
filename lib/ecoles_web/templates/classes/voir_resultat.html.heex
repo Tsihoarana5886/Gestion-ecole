@@ -1,0 +1,8 @@
+<h4 class="title">Voir resultat par classe</h4>
+<p>Classes :</p>
+<%= form_for @conn, Routes.classes_path(@conn, :result), [method: :post, as: :see], fn f -> %>
+<%= select(f, :classe_id, Enum.map(@classe, &{&1.nomclasse, &1.id}), prompt: "Tous") %>
+<div>
+  <%= submit "Valider" %>
+</div>
+<% end %>

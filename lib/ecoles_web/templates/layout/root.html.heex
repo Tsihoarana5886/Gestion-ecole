@@ -117,6 +117,7 @@
     <%= live_title_tag assigns[:page_title] || "Ecoles", suffix: " · Phoenix Framework" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="header">
@@ -132,8 +133,12 @@
                   <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Ajouter</a></li>
                 </ul>
               </li>
-              <li><a href={Routes.classes_path(@conn, :index)}>Classes</a></li>
-              <li><a href="#">Statistiques</a></li>
+              <li><a href={Routes.classes_path(@conn, :index)}>Classes</a>
+                <ul class="sub">
+                  <li><a href={Routes.classes_path(@conn, :goto_page_resultat)}>Resultat</a></li>
+                </ul>
+              </li>
+              <li><a href={Routes.statistiques_path(@conn, :statistiques)}>Statistiques</a></li>
               <li><a href="#">Autre parametres</a>
                 <ul class="sub">
                   <li><a href={Routes.sexe_path(@conn, :index)}>Sexe</a></li>

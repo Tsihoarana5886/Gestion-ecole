@@ -28,6 +28,8 @@ defmodule EcolesWeb.Router do
     get "/signout", AdminController, :sign_out
 
     resources "/classe", ClassesController
+    get "/voir_resultat", ClassesController, :goto_page_resultat
+    post "/result", ClassesController, :result
 
     resources "/sexes", SexeController
 
@@ -45,6 +47,8 @@ defmodule EcolesWeb.Router do
     get "/dtnotes/:id", NotesController, :getNotesById
     get "/filterstudy", NotesController, :getfilterstudy
     get "/bulletin", NotesController, :show_notes_study
+
+    get"/chart", StatistiquesController, :statistiques
 
   end
 

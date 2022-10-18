@@ -3,6 +3,7 @@ defmodule EcolesWeb.ClassesController do
 
   alias Ecoles.Shema
   alias Ecoles.Shema.Classes
+  alias Ecoles.Model.Notesmodeles
 
   def index(conn, _params) do
     classe = Shema.list_classe()
@@ -59,4 +60,17 @@ defmodule EcolesWeb.ClassesController do
     |> put_flash(:info, "Classes deleted successfully.")
     |> redirect(to: Routes.classes_path(conn, :index))
   end
+
+  def goto_page_resultat(conn, _params) do
+    # eleves = Elevesmodeles.list_eleves()
+    classe = Shema.list_classe()
+    render(conn, "voir_resultat.html", classe: classe)
+  end
+
+  def result(conn, params) do
+    idclasse = get_in(params, ["see", "classe_id"])
+    resultat = Notesmodeles.get_result_for_classe(idclasse)
+    render(conn, "resultat.html", resultat: resultat)
+  end
+
 end

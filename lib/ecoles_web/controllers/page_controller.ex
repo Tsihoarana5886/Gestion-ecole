@@ -12,13 +12,16 @@ defmodule EcolesWeb.PageController do
 
   def index(conn, _params) do
     changeset = Adminmodeles.change_admin(%Admin{})
-    # render conn, "login.html", changeset: changeset,
-    # layoutlogin: {EcolesWeb.LayoutloginView, "layoutlogin.html"}
-    render(conn, "login.html", changeset: changeset, layout: {EcolesWeb.PageView, "login.html"})
+    conn
+    |> put_root_layout(false)
+    |> render("login.html", changeset: changeset)
   end
 
   def goTopageLogin(conn, _params) do
     changeset = Adminmodeles.change_admin(%Admin{})
-    render(conn, "login.html", changeset: changeset)
+    conn
+    |> put_root_layout(false)
+    |> render("login.html", changeset: changeset)
   end
+
 end

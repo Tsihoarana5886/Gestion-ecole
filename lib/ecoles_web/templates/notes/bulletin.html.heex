@@ -76,6 +76,18 @@
                 <td><%= notes.matiere %></td>
                 <td><%= notes.note * notes.coefficient %></td>
                 <td><%= notes.coefficient * 20 %></td>
+                <%= cond do %>
+                    <% notes.note >= 16 -> %> 
+                    <td style="background-color:green;">Tres bien</td>
+                    <% notes.note >= 14 -> %> 
+                    <td style="background-color:darkgoldenrod">Bien</td> 
+                    <% notes.note >= 12 -> %>
+                    <td style="background-color:dodgerblue">Assez-bien</td> 
+                    <% notes.note >=10 -> %>
+                    <td style="background-color:grey;">Moyenne</td>
+                    <% true -> %>
+                    <td style="background-color:red;">Insuffisant</td>                
+                <% end %>
             </tr>
             <% end %>
         </tbody>

@@ -112,4 +112,16 @@ defmodule Ecoles.Model.Notesmodeles do
     Repo.all(query)
   end
 
+  def get_result_for_classe(idclasse) do
+    query = from n in Notes,
+            join: e in Eleves,
+            on: e.id == n.eleves_id,
+            join: m in Matiere,
+            on: m.id == n.matieres_id,
+            where: e.classe_id == ^idclasse,
+            group_by: [e.id, e.nom, e.prenom],
+            select: %{rang: row_number() |> over(order_by: [desc: (sum(n.valeur_notes * m.coef)/ 19)]), moyenne: ((sum(n.valeur_notes * m.coef) / 19)), id: e.id, nom: e.nom, prenom: e.prenom}
+    Repo.all(query)
+  end
+
 end

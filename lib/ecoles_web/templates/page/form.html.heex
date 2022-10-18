@@ -54,6 +54,16 @@
         margin-bottom: 5px;
         text-decoration: underline;
     }
+    .button {
+        background-color: #008CBA; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        }
 </style>
 <html>
     <head>
@@ -73,18 +83,18 @@
 
                 <h1>Connexion</h1>
                 <label><b>Email</b></label>
-                <%= text_input f, :email, class: "un", id: "iu", align: "center", placeholder: "Identifiant/Adresse éléctronique" %>
+                <%= text_input f, :email, class: "un", id: "iu", align: "center", placeholder: "Entrer votre email" %>
                 <%= error_tag f, :email %>
                 <%= error_tag f, :req_uname_error %>
                 <%= error_tag f, :not_user %>
 
                 <label><b>Mot de passe</b></label>
-                <%= password_input f, :mdp, class: "pass", align: "center", placeholder: "Mot de passe" %>
+                <%= password_input f, :mdp, class: "pass", align: "center", placeholder: "Entrer votre mot de passe" %>
                 <%= error_tag f, :mdp %>
                 <%= error_tag f, :req_pass_error %>
                 <%= error_tag f, :wrong_pass %>
             
-                <%= submit "Se connecter", class: "submit", align: "center" %>
+                <%= submit "Se connecter", class: "button", align: "center" %>
                 <div class="inscrire">
                     <!--<p><a href={Routes.admin_path(@conn, :goTopageInscription)}>S'inscrire</a></p>-->
                     <p><%= link "S'inscrire", to: Routes.admin_path(@conn, :goTopageInscription) %></p>

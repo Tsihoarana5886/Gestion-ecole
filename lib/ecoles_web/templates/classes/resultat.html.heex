@@ -1,0 +1,36 @@
+<h1 class="title">Resultat d'examen</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Moyenne</th>
+        <th>Rang</th>
+        <th>Appreciation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for resultat <- @resultat do %>
+        <tr>
+            <td><%= resultat.id %></td>
+            <td><%= resultat.nom %></td>
+            <td><%= resultat.prenom %></td>
+            <td><%= Float.round(resultat.moyenne, 2) %></td>
+            <td><%= resultat.rang %></td>
+            <%= cond do %>
+                <% resultat.moyenne >=16 -> %>
+                    <td style="color: green">Tres-bien</td>
+                <% resultat.moyenne >=14 -> %>
+                    <td style="color:darkgoldenrod">Bien</td>
+                <% resultat.moyenne >=12 -> %>
+                    <td style="color:dodgerblue">Assez-bien</td>
+                <% resultat.moyenne >=10 -> %>
+                    <td style="color:grey">Continuez tes efforts</td>
+                <% true -> %>
+                    <td style="color:red">Tres mauvais</td>
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

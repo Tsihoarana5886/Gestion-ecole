@@ -66,6 +66,7 @@ defmodule EcolesWeb.NotesController do
     sommenotes = Notesmodeles.sum_notes_to_coef(ideleves)
     sumcoef = Notesmodeles.sum_coef()
     moyenne = Notesmodeles.calcul_moyenne(ideleves)
+    # average = %{moyenne: moyenne}
     rang = Notesmodeles.rang_to_moyenne(idclasse)
     render(conn, "bulletin.html", eleves: eleves, study: study, sommenotes: sommenotes, sumcoef: sumcoef, moyenne: moyenne, rang: rang)
   end
