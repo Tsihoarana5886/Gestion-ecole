@@ -5,6 +5,7 @@ defmodule EcolesWeb.NotesController do
   alias Ecoles.Model.Elevesmodeles
   alias Ecoles.Model.Notesmodeles
   alias Ecoles.Shema.Notes
+  alias Phoenix.LiveView
 
 
   def gotoPageSaisieNotes(conn, _params) do
@@ -69,6 +70,10 @@ defmodule EcolesWeb.NotesController do
     # average = %{moyenne: moyenne}
     rang = Notesmodeles.rang_to_moyenne(idclasse)
     render(conn, "bulletin.html", eleves: eleves, study: study, sommenotes: sommenotes, sumcoef: sumcoef, moyenne: moyenne, rang: rang)
+  end
+
+  def list_notes(conn, _paramas) do
+    LiveView.Controller.live_render(conn, EcolesWeb.Notes.ListeLive, session: %{"curr_user_id" => get_session(conn, :curr_user_id)}, router: EcolesWeb.Router)
   end
 
 end

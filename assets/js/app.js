@@ -25,9 +25,27 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import {
+    HorizontalBarChart
+  } from "./chart.js";
+
+  const Hooks = {};
+
+  Hooks.HorizontalBarChart = {
+    mounted() {
+      const { labels_eleves_by_class, values_eleves_by_class } =
+        JSON.parse(this.el.dataset.chartData);
+      this.chart = new HorizontalBarChart(
+        this.el,
+        labels_eleves_by_class,
+        values_eleves_by_class
+      );
+    },
+  };
+  
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks: Hooks})
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})

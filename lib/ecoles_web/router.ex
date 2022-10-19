@@ -38,6 +38,7 @@ defmodule EcolesWeb.Router do
     get "/dteleves/:id", ElevesController, :getElevesById
     get "/eleves", ElevesController, :getListEleves
     get "/filtre", ElevesController, :getFilter
+    get "/chartsss", ElevesController, :charts
 
     resources "/matieres", MatiereController
 
@@ -47,6 +48,7 @@ defmodule EcolesWeb.Router do
     get "/dtnotes/:id", NotesController, :getNotesById
     get "/filterstudy", NotesController, :getfilterstudy
     get "/bulletin", NotesController, :show_notes_study
+    get "/lisitra", NotesController, :list_notes
 
     get"/chart", StatistiquesController, :statistiques
 

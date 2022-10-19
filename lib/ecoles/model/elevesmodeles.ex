@@ -55,4 +55,19 @@ defmodule Ecoles.Model.Elevesmodeles do
     Repo.all(query)
   end
 
+  def list_eleves_par_classe(idclasse) do
+    query = from e in Eleves,
+            join: c in Classes,
+            on: c.id == e.classe_id,
+            where: e.classe_id == ^idclasse,
+            select: e
+    Repo.all(query)
+  end
+
+  def list_classe do
+    query = from c in Classes,
+            select: {c.nomclasse, c.id}
+    Repo.all(query)
+  end
+
 end

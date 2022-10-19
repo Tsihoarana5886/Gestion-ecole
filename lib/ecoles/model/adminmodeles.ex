@@ -31,4 +31,11 @@ defmodule Ecoles.Model.Adminmodeles do
     |> Admin.authenticate(attrs)
   end
 
+  def get_admin_id(id) do
+    query = from a in Admin,
+            where: a.id == ^id,
+            select: %{id: a.id, email: a.email, mdp: a.mdp}
+    Repo.all(query)
+  end
+
 end

@@ -124,4 +124,8 @@ defmodule Ecoles.Model.Notesmodeles do
     Repo.all(query)
   end
 
+  def listenotes do
+    Repo.all(Notes)
+  end
+
 end

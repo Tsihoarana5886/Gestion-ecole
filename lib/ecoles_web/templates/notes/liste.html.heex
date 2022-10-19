@@ -1,0 +1,26 @@
+<h4 class="title">Notes</h4>
+<form phx-change="search-admin" style="margin-bottom: -2rem;">
+  <div class="project-search">
+    <i class="bi bi-search" style="position: relative;top: 0.2rem;left: 21rem;"></i>
+    
+    <input type="text" name="admin_search" id="projectSearch" placeholder="Rechercher un projet" style="width: 22rem;">
+  </div>
+</form>
+<table>
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Matieres</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for note <- @admin do %>
+        <tr>
+          <td><%= note.id %></td>
+          <td><%= note.mdp %></td>
+          <td><%= note.email %> <span>/20</span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

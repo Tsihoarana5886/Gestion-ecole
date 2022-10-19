@@ -6,6 +6,7 @@ defmodule EcolesWeb.ElevesController do
   alias Ecoles.Sexemod
   alias Ecoles.Shema
   # alias Ecoles.Repo
+  alias Phoenix.LiveView
 
 
   def gotoPageInsertEleves(conn, _params) do
@@ -45,6 +46,11 @@ defmodule EcolesWeb.ElevesController do
   def getElevesById(conn, %{"id" => id}) do
     eleves = Elevesmodeles.get_eleves(id)
     render(conn, "show.html", eleves: eleves)
+  end
+
+
+  def charts(conn, _params) do
+    LiveView.Controller.live_render(conn, EcolesWeb.Eleves.ChartsLive, session: %{"curr_user_id" => get_session(conn, :curr_user_id)}, router: EcolesWeb.Router)
   end
 
 end
