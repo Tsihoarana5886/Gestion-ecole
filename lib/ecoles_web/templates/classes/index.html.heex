@@ -1,12 +1,19 @@
+<style>
+    .td{
+      padding-left: 10px;
+    }
+</style>
 <h1 class="title">Listes Classes</h1>
-
+<div>
+  <a href={Routes.classes_path(@conn, :new)}><i class="fa-solid fa-circle-plus"></i> Ajouter</a>
+</div>
 <table>
   <thead>
     <tr>
       <th>Nom classe</th>
       <th>Place</th>
 
-      <th>Action</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -16,14 +23,12 @@
       <td><%= classes.place %> <span>plc</span></td>
 
       <td>
-      
-        <span><%= link "Afficher", to: Routes.classes_path(@conn, :show, classes) %></span>
-        <span><%= link "Modifier", to: Routes.classes_path(@conn, :edit, classes) %></span>
-        <span><%= link "Supprimer", to: Routes.classes_path(@conn, :delete, classes), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <a class="td" href={Routes.classes_path(@conn, :show, classes)}><i class="fa-solid fa-eye"></i></a>
+        <a class="td" href={Routes.classes_path(@conn, :edit, classes)}><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="td" href={Routes.classes_path(@conn, :delete, classes)}><i class="fa-solid fa-trash"></i></a>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "Ajouter un classe", to: Routes.classes_path(@conn, :new) %></span>

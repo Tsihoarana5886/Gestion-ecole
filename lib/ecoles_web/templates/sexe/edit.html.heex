@@ -2,4 +2,4 @@
 
 <%= render "form.html", Map.put(assigns, :action, Routes.sexe_path(@conn, :update, @sexe)) %>
 
-<span><%= link "Back", to: Routes.sexe_path(@conn, :index) %></span>
+<a href={Routes.sexe_path(@conn, :index)}><i class="fa-solid fa-circle-left"></i> Retour</a>

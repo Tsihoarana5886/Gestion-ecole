@@ -9,5 +9,5 @@
 
 </ul>
 
-<span><%= link "Modifier", to: Routes.sexe_path(@conn, :edit, @sexe) %></span> |
-<span><%= link "Retour", to: Routes.sexe_path(@conn, :index) %></span>
+<a href={Routes.sexe_path(@conn, :edit, @sexe)}><i class="fa-solid fa-square-pen"></i> Modifier</a> |
+<a href={Routes.sexe_path(@conn, :index)}><i class="fa-solid fa-circle-left"></i> Retour</a>

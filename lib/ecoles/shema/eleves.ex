@@ -4,6 +4,7 @@ defmodule Ecoles.Shema.Eleves do
   import Ecto.Changeset
 
   alias Ecoles.Shema.Notes
+  alias Ecoles.Shema.Absence
 
   schema "eleves" do
     field :nom, :string
@@ -12,6 +13,7 @@ defmodule Ecoles.Shema.Eleves do
     field :sexes_id, :integer
     field :classe_id, :integer
     has_many :note, Notes
+    has_many :absence, Absence
 
     timestamps()
   end

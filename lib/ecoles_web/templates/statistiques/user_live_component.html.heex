@@ -1,0 +1,49 @@
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 40%;
+      margin-left: 50px;
+      height: auto;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .container {
+        padding-bottom: 0px;
+        position: relative;
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .image{
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      width: 100px;
+    }
+    .pp{
+      font-size: large;
+      font-weight: bold;
+    }
+</style>
+<div class="card">
+    <div class="container">
+      <%= if @content_name == "Garçon" do %>
+        <div class="image">
+          <img src="/images/boys.webp"> 
+        </div>   
+        <h4><b><%= @content_name %></b></h4> 
+        <p class="pp"> Nombres : <%= Enum.count(@content_list) %></p>
+        <% else %> 
+        <div class="image">
+          <img src="/images/girls.webp">    
+        </div>
+        <h4><b><%= @content_name %></b></h4> 
+        <p class="pp">Nombres : <%= Enum.count(@content_list) %></p>
+      <% end %>
+    </div>
+</div>

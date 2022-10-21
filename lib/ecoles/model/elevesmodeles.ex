@@ -70,4 +70,16 @@ defmodule Ecoles.Model.Elevesmodeles do
     Repo.all(query)
   end
 
+  def list_study_boys do
+    query = from e in Eleves,
+            where: e.sexes_id == 1
+    Repo.all(query)
+  end
+
+  def list_study_girls do
+    query = from e in Eleves,
+            where: e.sexes_id == 2
+    Repo.all(query)
+  end
+
 end

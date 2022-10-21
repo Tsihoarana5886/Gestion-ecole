@@ -197,4 +197,100 @@ defmodule Ecoles.Shema do
   def change_matiere(%Matiere{} = matiere, attrs \\ %{}) do
     Matiere.changeset(matiere, attrs)
   end
+
+  alias Ecoles.Shema.Absence
+
+  @doc """
+  Returns the list of absence.
+
+  ## Examples
+
+      iex> list_absence()
+      [%Absence{}, ...]
+
+  """
+  def list_absence do
+    Repo.all(Absence)
+  end
+
+  @doc """
+  Gets a single absence.
+
+  Raises `Ecto.NoResultsError` if the Absence does not exist.
+
+  ## Examples
+
+      iex> get_absence!(123)
+      %Absence{}
+
+      iex> get_absence!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_absence!(id), do: Repo.get!(Absence, id)
+
+  @doc """
+  Creates a absence.
+
+  ## Examples
+
+      iex> create_absence(%{field: value})
+      {:ok, %Absence{}}
+
+      iex> create_absence(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_absence(attrs \\ %{}) do
+    %Absence{}
+    |> Absence.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a absence.
+
+  ## Examples
+
+      iex> update_absence(absence, %{field: new_value})
+      {:ok, %Absence{}}
+
+      iex> update_absence(absence, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_absence(%Absence{} = absence, attrs) do
+    absence
+    |> Absence.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a absence.
+
+  ## Examples
+
+      iex> delete_absence(absence)
+      {:ok, %Absence{}}
+
+      iex> delete_absence(absence)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_absence(%Absence{} = absence) do
+    Repo.delete(absence)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking absence changes.
+
+  ## Examples
+
+      iex> change_absence(absence)
+      %Ecto.Changeset{data: %Absence{}}
+
+  """
+  def change_absence(%Absence{} = absence, attrs \\ %{}) do
+    Absence.changeset(absence, attrs)
+  end
 end

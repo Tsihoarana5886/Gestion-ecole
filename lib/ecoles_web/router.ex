@@ -38,7 +38,7 @@ defmodule EcolesWeb.Router do
     get "/dteleves/:id", ElevesController, :getElevesById
     get "/eleves", ElevesController, :getListEleves
     get "/filtre", ElevesController, :getFilter
-    get "/chartsss", ElevesController, :charts
+    get "/statistiques", ElevesController, :charts
 
     resources "/matieres", MatiereController
 
@@ -52,6 +52,7 @@ defmodule EcolesWeb.Router do
 
     get"/chart", StatistiquesController, :statistiques
 
+    get"/absence", AbsenceController, :goto_form_absence
   end
 
   # Other scopes may use custom stacks.

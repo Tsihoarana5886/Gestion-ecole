@@ -1,6 +1,6 @@
 <h1 class="title">Listes Matieres</h1>
 <div>
-  <span><%= link "Ajouter un matiere", to: Routes.matiere_path(@conn, :new) %></span>
+  <a href={Routes.matiere_path(@conn, :new)}><i class="fa-solid fa-circle-plus"></i> Ajouter</a>
 </div>
 <table>
   <thead>
@@ -18,9 +18,9 @@
       <td><%= matiere.coef %></td>
 
       <td>
-        <span><%= link "Voir", to: Routes.matiere_path(@conn, :show, matiere) %></span>
-        <span><%= link "Modifier", to: Routes.matiere_path(@conn, :edit, matiere) %></span>
-        <span><%= link "Supprimer", to: Routes.matiere_path(@conn, :delete, matiere), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <a class="td" href={Routes.matiere_path(@conn, :show, matiere)}><i class="fa-solid fa-eye"></i></a>
+        <a class="td" href={Routes.matiere_path(@conn, :edit, matiere)}><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="td" href={Routes.matiere_path(@conn, :delete, matiere)}><i class="fa-solid fa-trash"></i></a>
       </td>
     </tr>
 <% end %>

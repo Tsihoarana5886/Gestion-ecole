@@ -1,0 +1,44 @@
+<style> 
+    input{
+      width: 50%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    .date_absence{
+        /* border: 1px solid black; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0px 10px 0px 10px;
+        gap: 10px;
+    }
+ </style>
+    <body>
+    
+    <h1 class="title">Formulaire pour faire un absence</h1>
+    
+    <form>
+      <label for="fname">Motifs</label>
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <label>Nom et prenom</label>
+      <select>
+        <%= for eleve <- @eleves do %>
+        <option value={eleve.id} style="background: #1F2937; color: #fff;">
+            <%= eleve.nom %> - <%= eleve.prenom %> - <%= eleve.classe %>
+          </option>
+        <% end %>
+    </select>
+      <div class="date_absence">
+        <div class="date_debut">
+            <label for="lname">Date debut</label>
+            <input type="date" id="lname" name="lname">
+        </div>
+        <div class="date_fin">
+            <label for="lname">Date fin</label>
+            <input type="date" id="lname" name="lname">
+        </div>
+      </div>
+      <button class="btn btn-success">Enregistrer</button>
+    </form>
+    
+    </body>

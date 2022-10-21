@@ -14,5 +14,6 @@
 
 </ul>
 
-<span><%= link "Modifier", to: Routes.matiere_path(@conn, :edit, @matiere) %></span> |
-<span><%= link "Retour", to: Routes.matiere_path(@conn, :index) %></span>
+<a href={Routes.matiere_path(@conn, :edit, @matiere)}><i class="fa-solid fa-square-pen"></i> Modifier</a> |
+<a href={Routes.matiere_path(@conn, :index)}><i class="fa-solid fa-circle-left"></i> Retour</a>
+

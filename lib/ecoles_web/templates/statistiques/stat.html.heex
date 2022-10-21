@@ -1,8 +1,69 @@
-<div class="column" style="width: 100%; padding: 0">
-    <div class="icon-card horizontal-bar-chart">
-      <canvas phx-hook="HorizontalBarChart" 
-              id="horizontal-bar-chart"  
-              data-chart-data={Jason.encode!(@chart_data)}>
-      </canvas>      
+<style>
+    .contenues{
+      /* border: 2px solid red; */
+      width: 100%;
+      height: 100%;
+    }
+    .contenu_1{
+      /* border: 1px solid blue; */
+      margin: 10px 10px 10px 10px;
+      display: flex;
+      height: 100%;
+    }
+    .contenu_2{
+      /* border: 1px solid orchid; */
+      padding: 10px 10px 0 10px;
+      margin: 10px 10px 10px 10px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+    .column:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+</style>
+<!DOCTYPE html>
+<html lang="fr">
+  <body>
+    <h1 class="title"><i class="fa-solid fa-chart-simple"></i> Statistiques</h1>
+    <div class="contenues">
+      <%= if @show_dashboard_component != false do %>
+        <!-- Icon Card - Row BEGIN -->
+        <div class="contenu_1" style="padding: 0; width: auto">
+          <%= 
+            live_component(
+              UserLiveComponent,
+              color: "#0069d9",
+              background_color: "#6365f117",
+              content_name: "Garçon",
+              content_list: @list_study_boys,
+              font_color: "#1e293b"
+              )
+          %>
+
+          <%= 
+          live_component(
+            UserLiveComponent,
+            color: "#0069d9",
+            background_color: "#6365f117",
+            content_name: "Fille",
+            content_list: @list_study_girls,
+            font_color: "#1e293b"
+            )
+           %>
+        </div>
+      <% end %>
+
+      <%= if @show_dashboard_component != false do %>
+        <div class="contenu_2" id="chart">
+          <div class="column" style="width: 100%; padding: 0">
+            <div class="icon-card horizontal-bar-chart">
+              <canvas phx-hook="HorizontalBarChart" 
+                      id="horizontal-bar-chart"  
+                      data-chart-data={Jason.encode!(@chart_data)}>
+              </canvas>      
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  </div>
+  </body>
+</html>

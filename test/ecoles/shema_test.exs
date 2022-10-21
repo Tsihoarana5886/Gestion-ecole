@@ -166,4 +166,62 @@ defmodule Ecoles.ShemaTest do
       assert %Ecto.Changeset{} = Shema.change_matiere(matiere)
     end
   end
+
+  describe "absence" do
+    alias Ecoles.Shema.Absence
+
+    import Ecoles.ShemaFixtures
+
+    @invalid_attrs %{date_debut: nil, date_fin: nil, motifs: nil}
+
+    test "list_absence/0 returns all absence" do
+      absence = absence_fixture()
+      assert Shema.list_absence() == [absence]
+    end
+
+    test "get_absence!/1 returns the absence with given id" do
+      absence = absence_fixture()
+      assert Shema.get_absence!(absence.id) == absence
+    end
+
+    test "create_absence/1 with valid data creates a absence" do
+      valid_attrs = %{date_debut: ~D[2022-10-20], date_fin: ~D[2022-10-20], motifs: "some motifs"}
+
+      assert {:ok, %Absence{} = absence} = Shema.create_absence(valid_attrs)
+      assert absence.date_debut == ~D[2022-10-20]
+      assert absence.date_fin == ~D[2022-10-20]
+      assert absence.motifs == "some motifs"
+    end
+
+    test "create_absence/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Shema.create_absence(@invalid_attrs)
+    end
+
+    test "update_absence/2 with valid data updates the absence" do
+      absence = absence_fixture()
+      update_attrs = %{date_debut: ~D[2022-10-21], date_fin: ~D[2022-10-21], motifs: "some updated motifs"}
+
+      assert {:ok, %Absence{} = absence} = Shema.update_absence(absence, update_attrs)
+      assert absence.date_debut == ~D[2022-10-21]
+      assert absence.date_fin == ~D[2022-10-21]
+      assert absence.motifs == "some updated motifs"
+    end
+
+    test "update_absence/2 with invalid data returns error changeset" do
+      absence = absence_fixture()
+      assert {:error, %Ecto.Changeset{}} = Shema.update_absence(absence, @invalid_attrs)
+      assert absence == Shema.get_absence!(absence.id)
+    end
+
+    test "delete_absence/1 deletes the absence" do
+      absence = absence_fixture()
+      assert {:ok, %Absence{}} = Shema.delete_absence(absence)
+      assert_raise Ecto.NoResultsError, fn -> Shema.get_absence!(absence.id) end
+    end
+
+    test "change_absence/1 returns a absence changeset" do
+      absence = absence_fixture()
+      assert %Ecto.Changeset{} = Shema.change_absence(absence)
+    end
+  end
 end

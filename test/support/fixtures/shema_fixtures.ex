@@ -47,4 +47,20 @@ defmodule Ecoles.ShemaFixtures do
 
     matiere
   end
+
+  @doc """
+  Generate a absence.
+  """
+  def absence_fixture(attrs \\ %{}) do
+    {:ok, absence} =
+      attrs
+      |> Enum.into(%{
+        date_debut: ~D[2022-10-20],
+        date_fin: ~D[2022-10-20],
+        motifs: "some motifs"
+      })
+      |> Ecoles.Shema.create_absence()
+
+    absence
+  end
 end

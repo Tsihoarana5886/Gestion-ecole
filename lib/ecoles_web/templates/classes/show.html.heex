@@ -14,5 +14,5 @@
 
 </ul>
 
-<span><%= link "Modifier", to: Routes.classes_path(@conn, :edit, @classes) %></span> |
-<span><%= link "Retour", to: Routes.classes_path(@conn, :index) %></span>
+<a href={Routes.classes_path(@conn, :edit, @classes)}><i class="fa-solid fa-square-pen"></i> Modifier</a> |
+<a href={Routes.classes_path(@conn, :index)}><i class="fa-solid fa-circle-left"></i> Retour</a>

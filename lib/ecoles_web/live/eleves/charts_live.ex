@@ -9,6 +9,8 @@ defmodule EcolesWeb.Eleves.ChartsLive do
   #monter = mount
   def mount(_params, %{"curr_user_id" => user_id}, socket) do
     admin = Adminmodeles.get_admin_id(user_id)
+    list_study_boys = Elevesmodeles.list_study_boys()
+    list_study_girls = Elevesmodeles.list_study_girls()
 
     labels_eleves_by_class =
     for class <- Elevesmodeles.list_classe do
@@ -23,7 +25,13 @@ defmodule EcolesWeb.Eleves.ChartsLive do
         |> Enum.count()
     end
 
-    {:ok, socket |> assign(chart_data: %{labels_eleves_by_class: labels_eleves_by_class, values_eleves_by_class: values_eleves_by_class})}
+    {:ok, socket
+            |> assign(
+                      show_dashboard_component: true,
+                      list_study_boys: list_study_boys,
+                      list_study_girls: list_study_girls,
+                      chart_data: %{labels_eleves_by_class: labels_eleves_by_class, values_eleves_by_class: values_eleves_by_class})
+    }
   end
 
   #rendre = render

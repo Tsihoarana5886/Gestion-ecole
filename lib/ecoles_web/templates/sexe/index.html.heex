@@ -1,5 +1,12 @@
+<style>
+  .a_sexe{
+    padding-left: 10px;
+  }
+</style>
 <h1 class="title">Listes Sexes</h1>
-
+<div>
+    <a href={Routes.sexe_path(@conn, :new)}><i class="fa-solid fa-circle-plus"></i> Ajouter</a>
+</div>
 <table>
   <thead>
     <tr>
@@ -14,13 +21,12 @@
       <td><%= sexe.nom %></td>
 
       <td>
-        <span><%= link "Voir", to: Routes.sexe_path(@conn, :show, sexe) %></span>
-        <span><%= link "Modifier", to: Routes.sexe_path(@conn, :edit, sexe) %></span>
-        <span><%= link "Supprimer", to: Routes.sexe_path(@conn, :delete, sexe), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <a class="a_sexe" href={Routes.sexe_path(@conn, :show, sexe)}><i class="fa-solid fa-eye"></i></a>
+        <a class="a_sexe" href={Routes.sexe_path(@conn, :edit, sexe)}><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="a_sexe" href={Routes.sexe_path(@conn, :delete, sexe)}><i class="fa-solid fa-trash"></i></a>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "Ajouter", to: Routes.sexe_path(@conn, :new) %></span>

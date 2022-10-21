@@ -24,7 +24,7 @@
         background-color:white;
         width: 100%;
         margin-left: 5px;
-        height: auto;
+        height: 100%;
     }
     .footer{
         background-color:white;
@@ -39,6 +39,7 @@
        font-family: Georgia, 'Times New Roman', Times, serif;
        font-size: xx-large;
        font-weight: bold;
+       color:green;
     }
     .titres{
         font-family: Georgia, 'Times New Roman', Times, serif;
@@ -72,7 +73,7 @@
       .navbar a {
         padding: 18px 0;
         text-decoration: none;
-        color: blue;
+        color:firebrick;
         display: block;
       }
       .navbar li:hover,
@@ -89,7 +90,7 @@
         display: block;
       }
       .navbar li ul li {
-        background-color: pink;
+        background-color:white;
       }
       .navbar li ul li a {
         border-left: 1px solid #444444;
@@ -98,13 +99,20 @@
         border-bottom: 1px solid #444444;
       }
       .navbar li ul li a:hover {
-        background-color:cyan;
+        background-color:#67BE4B;
       }
       .title{
         padding-top: 10px;
         color:firebrick;
         font-family:Georgia, 'Times New Roman', Times, serif;
         font-size:x-large;
+    }
+    .td{
+      padding-left: 10px;
+    }
+    .menu_a{
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: large;
     }
 </style>
 <!DOCTYPE html>
@@ -118,35 +126,43 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <div class="header">
-      <h2 class="titre">GESTIONS ECOLES</h2>
+      <h2 class="titre"><i class="fa-solid fa-graduation-cap"></i> GESTIONS ECOLES</h2>
   </div>
   <div class="content">
       <div class="menu">
-          <h4 class="titres">Menu de navigation</h4>
+          <h4 class="titres"><i class="fa-solid fa-house"></i> Menu de navigation</h4>
           <ul class="navbar">
-              <li><a href="#">Eleves</a>
+              <li><a class="menu_a" href="#"><i class="fa-solid fa-people-group"></i> Eleves</a>
                 <ul class="sub">
                   <li><a href={Routes.eleves_path(@conn, :getListEleves)}>Voir listes</a></li>
                   <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Ajouter</a></li>
+                  <li><a href={Routes.absence_path(@conn, :goto_form_absence)}>Faire un absence</a></li>
                 </ul>
               </li>
-              <li><a href={Routes.classes_path(@conn, :index)}>Classes</a>
+              <li><a class="menu_a" href="#"><i class="fa-solid fa-school"></i> Classes</a>
                 <ul class="sub">
+                  <li><a href={Routes.classes_path(@conn, :index)}>Voir listes</a></li>
                   <li><a href={Routes.classes_path(@conn, :goto_page_resultat)}>Resultat</a></li>
                 </ul>
               </li>
-              <li><a href={Routes.eleves_path(@conn, :charts)}>Statistiques</a></li>
-              <li><a href="#">Autre parametres</a>
+              <li><a class="menu_a" href="#"><i class="fa-solid fa-chart-simple"></i> Statistiques</a>
+                <ul class="sub">
+                  <li><a href={Routes.eleves_path(@conn, :charts)}>Eleves / Classes</a></li>
+                </ul>
+              </li>
+
+              <li><a class="menu_a" href="#"><i class="fa-solid fa-gears"></i> Paramètres</a>
                 <ul class="sub">
                   <li><a href={Routes.sexe_path(@conn, :index)}>Sexe</a></li>
                   <li><a href={Routes.matiere_path(@conn, :index)}>Gestions matieres</a></li>
                   <li><a href={Routes.notes_path(@conn, :gotoPageSaisieNotes)}>Gestions notes</a></li>
                 </ul>
               </li>
-              <li><a href={Routes.admin_path(@conn, :sign_out)}>Déconnexion</a></li>
+              <li><a class="menu_a" href={Routes.admin_path(@conn, :sign_out)}><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a></li>
           </ul>
       </div>
       <div class="contenu">
@@ -155,7 +171,7 @@
       
   </div>
   <div class="footer">
-      <p class="titres">Copyright 2022</p>
+      <p class="titres">Copyright <span>&copy; 2022</span> </p>
   </div>
    
   </body>
