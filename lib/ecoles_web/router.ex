@@ -53,6 +53,7 @@ defmodule EcolesWeb.Router do
     get"/chart", StatistiquesController, :statistiques
 
     get"/absence", AbsenceController, :goto_form_absence
+    get"/listabsence", AbsenceController, :list_absence
   end
 
   # Other scopes may use custom stacks.

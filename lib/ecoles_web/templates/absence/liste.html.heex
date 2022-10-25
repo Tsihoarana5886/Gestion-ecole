@@ -1,0 +1,48 @@
+<style>
+    table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+    }
+    th, td {
+    background-color: #96D4D4;
+    }
+</style>
+<head></head>
+<h1 class="title">Listes des absences</h1>
+<div>
+  <a href={Routes.absence_path(@socket, :goto_form_absence)}><i class="fa-solid fa-circle-plus"></i> Faire un absence</a>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Classe</th>
+      <th>Motifs</th>
+      <th>Date debut</th>
+      <th>Date fin</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for absence <- @absence do %>
+    <tr>
+      <td><%= absence.nom %></td>
+      <td><%= absence.prenom %></td>
+      <td><%= absence.classe %></td>
+      <td><%= absence.motifs %></td>
+      <td><%= absence.date_debut %></td>
+      <td><%= absence.date_fin %></td>
+
+      <td>
+        <a class="td" href="#"><i class="fa-solid fa-eye"></i></a>
+        <a class="td" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="td" href="#"><i class="fa-solid fa-trash"></i></a>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+

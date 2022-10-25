@@ -127,6 +127,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
   </head>
   <body>
     <div class="header">
@@ -140,7 +141,7 @@
                 <ul class="sub">
                   <li><a href={Routes.eleves_path(@conn, :getListEleves)}>Voir listes</a></li>
                   <li><a href={Routes.eleves_path(@conn, :gotoPageInsertEleves)}>Ajouter</a></li>
-                  <li><a href={Routes.absence_path(@conn, :goto_form_absence)}>Faire un absence</a></li>
+                  <li><a href={Routes.absence_path(@conn, :list_absence)}>Listes des absences</a></li>
                 </ul>
               </li>
               <li><a class="menu_a" href="#"><i class="fa-solid fa-school"></i> Classes</a>
