@@ -5,6 +5,53 @@
     height: 50px;
     padding-top: 5px;
   }
+  .pagination{
+    width: 100%;
+    height: 100px;
+    /* border: 1px solid black; */
+    /* background:cyan; */
+    /* text-align: center;
+    justify-content: center;
+    display: flex; */
+  }
+  .pagination-container {
+  width: calc(100% - 2rem);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem 0;
+  /* justify-content: center; */
+  float: left;
+  }
+
+  .pagination-number,
+  .pagination-button{
+    font-size: 1.1rem;
+    /* background-color: transparent; */
+    border: none;
+    margin: 0.25rem 0.25rem;
+    padding: 0px 5px 0px 5px;
+    cursor: pointer;
+    height: 5rem;
+    width: 5rem;
+    border-radius: .2rem;
+    text-align: center;
+  }
+
+  /* .pagination-number:hover,
+  .pagination-button:not(.disabled):hover {
+    background:#fff;
+  } */
+
+  .pagination-number.active {
+    color:#fff;
+    background: green;
+  }
+  .hidden {
+  display: none;
+  }
+
 </style>
 <h1 class="title">Liste Eleves</h1>
 <div class="filter">
@@ -26,7 +73,7 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="paginated-list">
       <%= for eleves <- @eleves do %>
           <%= form_for @conn, Routes.notes_path(@conn, :show_notes_study), [method: :get, as: :show], fn f -> %>
              <%= hidden_input f, :id, value: eleves.id %>
@@ -37,12 +84,129 @@
               <td><%= eleves.age %>  <span>ans</span></td>
               <td><%= eleves.sexe %></td>
               <td><%= eleves.classe %></td>
-              <th><%= submit "Voir les notes" %></th>
+              <td><%= submit "Voir les notes" %></td>
             </tr>
           <% end %>
       <% end %>
     </tbody>
   </table>
+  <div class="pagination">
+    <nav class="pagination-container">
+      <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
+        Prev
+      </button>
+  
+      <div id="pagination-numbers">
+  
+      </div>
+  
+      <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
+        Next
+      </button>
+    </nav>
+  </div>
+ 
+  <script>
+    const paginationNumbers = document.getElementById("pagination-numbers");
+    const paginatedList = document.getElementById("paginated-list");
+    const listItems = paginatedList.querySelectorAll("tr");
+    const nextButton = document.getElementById("next-button");
+    const prevButton = document.getElementById("prev-button");
+
+    const paginationLimit = 5;
+    const pageCount = Math.ceil(listItems.length / paginationLimit);
+    let currentPage = 1;
+
+    const disableButton = (button) => {
+      button.classList.add("disabled");
+      button.setAttribute("disabled", true);
+    };
+
+    const enableButton = (button) => {
+      button.classList.remove("disabled");
+      button.removeAttribute("disabled");
+    };
+
+    const handlePageButtonsStatus = () => {
+      if (currentPage === 1) {
+        disableButton(prevButton);
+      } else {
+        enableButton(prevButton);
+      }
+
+      if (pageCount === currentPage) {
+        disableButton(nextButton);
+      } else {
+        enableButton(nextButton);
+      }
+    };
+
+    const handleActivePageNumber = () => {
+      document.querySelectorAll(".pagination-number").forEach((button) => {
+        button.classList.remove("active");
+        const pageIndex = Number(button.getAttribute("page-index"));
+        if (pageIndex == currentPage) {
+          button.classList.add("active");
+        }
+      });
+    };
+
+    const appendPageNumber = (index) => {
+      const pageNumber = document.createElement("button");
+      pageNumber.className = "pagination-number";
+      pageNumber.innerHTML = index;
+      pageNumber.setAttribute("page-index", index);
+      pageNumber.setAttribute("aria-label", "Page " + index);
+
+      paginationNumbers.appendChild(pageNumber);
+    };
+
+    const getPaginationNumbers = () => {
+      for (let i = 1; i <= pageCount; i++) {
+        appendPageNumber(i);
+      }
+    };
+
+    const setCurrentPage = (pageNum) => {
+      currentPage = pageNum;
+
+      handleActivePageNumber();
+      handlePageButtonsStatus();
+      
+      const prevRange = (pageNum - 1) * paginationLimit;
+      const currRange = pageNum * paginationLimit;
+
+      listItems.forEach((item, index) => {
+        item.classList.add("hidden");
+        if (index >= prevRange && index < currRange) {
+          item.classList.remove("hidden");
+        }
+      });
+    };
+
+    window.addEventListener("load", () => {
+      getPaginationNumbers();
+      setCurrentPage(1);
+
+      prevButton.addEventListener("click", () => {
+        setCurrentPage(currentPage - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        setCurrentPage(currentPage + 1);
+      });
+
+      document.querySelectorAll(".pagination-number").forEach((button) => {
+        const pageIndex = Number(button.getAttribute("page-index"));
+
+        if (pageIndex) {
+          button.addEventListener("click", () => {
+            setCurrentPage(pageIndex);
+          });
+        }
+      });
+    });
+  </script>
   <script>
     function sortTableByColumn(table, column, asc = true) {
       const dirModifier = asc ? 1 : -1;
@@ -84,3 +248,4 @@
   });
   
   </script>
+ 
